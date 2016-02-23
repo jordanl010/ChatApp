@@ -1,0 +1,61 @@
+<!-- Enter the chatroom input box -->
+<div class="row" id="enter_room" ng-style="{
+                          'display': user_show ? 'none' :'block' 
+                      }">
+    <div class="col-lg-12">
+        <input type="text" id="user_name" placeholder="username">
+        <button ng-click="enterChatRoom()">
+            Enter Chat Room
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Online users box -->
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-4">
+                <ul class="user">
+                    <!-- appending username  -->
+                    <span ng-style="{
+                          'display': user_show ? 'block' :'none' 
+                      }">Online people:</span>
+                    <li class="" ng-repeat="user_list in user_show" ng-style="{
+                          'background': clicked==user_list.id ?  '#d2d2d2' :'#e2e2e2',
+                          'cursor': 'pointer'
+                      }" ng-click="clicked_highlight(user_list.id)">
+                        <span id='{{user_list.id}}' ng-style="{
+                          'display': my_id==user_list.id ? 'none' :'block' 
+                      }"> - {{ user_list.user_name }}</span>
+                        <span class='you' ng-style="{
+                          'display': my_id==user_list.id ? 'block' :'none' 
+                      }">You entered this chatroom as <b>{{ user_list.user_name }}</b></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Chat message box -->
+        <div class="row">
+            <div class="col-lg-8" ng-style="{
+                          'display': user_show ? 'block' :'none' 
+                      }">
+                <!-- showing messages -->
+                <div class=" chatbox " id="chatbox ">
+                    <p ng-style="{
+                         'display': is_msg_show==true ? 'block' :'none' 
+                      }">
+                        <span class='sender'><strong>{{ msgs.name }} </strong>says:</span>
+                        <br/>
+                        <span class='sender_msg'>{{ msgs.msg }}</span>
+                    </p>
+                </div>
+                <br/>
+                <div id="name-group " class="form-group ">
+                    <textarea class="form-control msg_box " id="msg_box " ng-model='msg_text' ng-keypress="send_msg($event) " placeholder="Type here and check the Title in Tab "></textarea>
+                    <input type='text' style='display:none' ng-model='selected_id' />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

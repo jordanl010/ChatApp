@@ -1,0 +1,13 @@
+ul {
+    list-style-type: none;
+}
+
+h1 {
+    text-align: center;
+}
+
+#enter_room {
+    top: 42%;
+    left: 42%;
+    position: absolute;
+}
